@@ -1,0 +1,39 @@
+plugins {
+    id 'base'
+}
+
+description = 'My own project.'
+version = '1.0'
+
+task copy(type: Copy) {
+    from 'src'
+    into 'dest'
+}
+
+task zip(type: Zip) {
+    from 'src'
+}
+
+class Greeting extends DefaultTask {
+    String message
+    String recipient
+
+    @TaskAction
+    void sayGreeting() {
+        println "${message}, ${recipient}!" 
+    }
+}
+
+task hello(type: Greeting) {
+    group 'Welcome'
+    description 'This is my first gradle task'
+    message 'Hello'
+    recipient 'World'
+}
+
+task gutenTag(type: Greeting) {
+    group 'Welcome'
+    description 'Produces a German greeting'
+    message 'NSY'
+    recipient 'Love KIKI'
+}
